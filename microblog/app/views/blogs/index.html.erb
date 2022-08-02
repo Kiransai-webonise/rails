@@ -1,0 +1,32 @@
+<table>
+  <tr>
+    <th>Ttile</th>
+    <th>Body</th>
+    <th>Status</th>
+    <th></th>
+  </tr>
+  <% @blogs.each do |blog| %>
+    <tr>
+      <td><%= blog.title %><input type="hidden" class="blog_id" name="blog_id" value=<%= blog.id %>/></td>
+      <td><%= blog.body %></td>
+      <td><%= select('blog', 'status', options_for_select([['Publish', 1], ['Unpublish', 0]], blog.status)) %></td>
+      <td><%= link_to 'Edit', edit_blog_path(blog.id) %><%= button_to 'Delete', blog_path(blog.id), method: :delete %></td>
+    </te>
+  <% end %>
+</table>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script>
+    $('#blog_status').on('change', function() {
+      jQuery.ajax({  
+        url: "blogs/change_status/" + $('.blog_id').val(),  
+        type: 'PUT',
+        data: {blog: {status: $(this).val()}},
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+  
+        success: function(data) {
+          alert('Status Changed successfully')
+          location.reload() 
+        }
+      });
+    })
+</script>

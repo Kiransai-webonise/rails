@@ -1,0 +1,13 @@
+<h3>Create a Blog</h3>
+<%= form_with model: @blog do |form| %>
+  <%= form.text_field :title, placeholder: "Title" %>
+  <%= form.text_area :body, placeholder: "Body" %>
+  <%= select('blog', 'status', options_for_select([['Publish', 1], ['Unpublish', 0]])) %>
+  <%= form.submit %>
+<% end %>
+
+<!-- <%= form_for @blog do |form| %>
+  <%= form.text_field :title, placeholder: 'title' %>
+  <%= form.text_field :body, placeholder: 'Body' %>
+  <%= form.submit %>
+<% end %> -->
