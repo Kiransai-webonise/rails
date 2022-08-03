@@ -14,19 +14,6 @@
     </te>
   <% end %>
 </table>
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-<script>
-    $('#blog_status').on('change', function() {
-      jQuery.ajax({  
-        url: "blogs/change_status/" + $('.blog_id').val(),  
-        type: 'PUT',
-        data: {blog: {status: $(this).val()}},
-        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-  
-        success: function(data) {
-          alert('Status Changed successfully')
-          location.reload() 
-        }
-      });
-    })
-</script>
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "common.js" %>
+<% end %>
