@@ -5206,3 +5206,527 @@ Processing by BlogsController#index as HTML
 Completed 200 OK in 17ms (Views: 16.0ms | ActiveRecord: 0.3ms | Allocations: 4033)
 
 
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateComments (20220808094845)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "article_id" integer, "text" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220808094845"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateComments (20220808095953)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "commenter" varchar, "body" text, "blog_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_b9ae98a823"
+FOREIGN KEY ("blog_id")
+  REFERENCES "blogs" ("id")
+)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.7ms)[0m  [1m[35mDROP TABLE "comments"[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateComments (20220808095953)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "commenter" varchar, "body" text, "blog_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_b9ae98a823"
+FOREIGN KEY ("blog_id")
+  REFERENCES "blogs" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_comments_on_blog_id" ON "comments" ("blog_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220808095953"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/blogs" for ::1 at 2022-08-08 15:36:14 +0530
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BlogsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/index.html.erb within layouts/application
+  [1m[36mBlog Load (0.4ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs"[0m
+  ↳ app/views/blogs/index.html.erb:8
+  Rendered blogs/index.html.erb within layouts/application (Duration: 54.7ms | Allocations: 35177)
+  Rendered layout layouts/application.html.erb (Duration: 64.8ms | Allocations: 48970)
+Completed 200 OK in 77ms (Views: 67.2ms | ActiveRecord: 1.0ms | Allocations: 56926)
+
+
+Started GET "/blogs/1/edit" for ::1 at 2022-08-08 15:36:19 +0530
+Processing by BlogsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBlog Load (0.2ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/blogs_controller.rb:17:in `edit'
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/edit.html.erb within layouts/application
+  Rendered blogs/edit.html.erb within layouts/application (Duration: 3.3ms | Allocations: 3094)
+  Rendered layout layouts/application.html.erb (Duration: 3.5ms | Allocations: 3173)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.2ms | Allocations: 5895)
+
+
+  
+ActionView::Template::Error (Missing partial partials/_blog_form with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}.
+
+Searched in:
+  * "/home/webonise/Desktop/rails/microblog/app/views"
+  * "/home/webonise/.rvm/gems/ruby-3.0.0/gems/actiontext-7.0.3.1/app/views"
+  * "/home/webonise/.rvm/gems/ruby-3.0.0/gems/actionmailbox-7.0.3.1/app/views"
+
+Did you mean?  active_storage/blobs/blob
+               action_text/attachables/remote_image
+               action_text/attachables/missing_attachable
+               action_text/attachment_galleries/attachment_gallery
+               action_text/contents/content
+               layouts/action_text/contents/content):
+    1: <h3>Update a Blog</h3>
+    2: <%= render :partial => 'partials/blog_form', locals: { blog: @blog } %>
+  
+app/views/blogs/edit.html.erb:2
+Started GET "/blogs/1/edit" for ::1 at 2022-08-08 15:36:37 +0530
+Processing by BlogsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/blogs_controller.rb:17:in `edit'
+  [1m[36mBlog Load (0.1ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/blogs_controller.rb:17:in `edit'
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/edit.html.erb within layouts/application
+  Rendered blogs/edit.html.erb within layouts/application (Duration: 2.5ms | Allocations: 2146)
+  Rendered layout layouts/application.html.erb (Duration: 3.0ms | Allocations: 2226)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 1.0ms | Allocations: 7566)
+
+
+  
+ActionView::Template::Error (Missing partial partials/_blog_form with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}.
+
+Searched in:
+  * "/home/webonise/Desktop/rails/microblog/app/views"
+  * "/home/webonise/.rvm/gems/ruby-3.0.0/gems/actiontext-7.0.3.1/app/views"
+  * "/home/webonise/.rvm/gems/ruby-3.0.0/gems/actionmailbox-7.0.3.1/app/views"
+
+Did you mean?  active_storage/blobs/blob
+               action_text/attachables/remote_image
+               action_text/attachables/missing_attachable
+               action_text/attachment_galleries/attachment_gallery
+               action_text/contents/content
+               layouts/action_text/contents/content):
+    1: <h3>Update a Blog</h3>
+    2: <%= render :partial => 'partials/blog_form', locals: { blog: @blog } %>
+  
+app/views/blogs/edit.html.erb:2
+Started GET "/blogs/1/edit" for ::1 at 2022-08-08 15:43:09 +0530
+Processing by BlogsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/blogs_controller.rb:17:in `edit'
+  [1m[36mBlog Load (0.1ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/blogs_controller.rb:17:in `edit'
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/edit.html.erb within layouts/application
+  Rendered partials/_blog_form.erb (Duration: 8.2ms | Allocations: 5941)
+  Rendered blogs/edit.html.erb within layouts/application (Duration: 8.8ms | Allocations: 6207)
+  Rendered layout layouts/application.html.erb (Duration: 24.7ms | Allocations: 20131)
+Completed 200 OK in 29ms (Views: 26.4ms | ActiveRecord: 0.4ms | Allocations: 22111)
+
+
+Started GET "/blogs" for ::1 at 2022-08-08 15:43:13 +0530
+Processing by BlogsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/index.html.erb within layouts/application
+  [1m[36mBlog Load (0.2ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs"[0m
+  ↳ app/views/blogs/index.html.erb:8
+  Rendered blogs/index.html.erb within layouts/application (Duration: 4.8ms | Allocations: 2980)
+  Rendered layout layouts/application.html.erb (Duration: 10.5ms | Allocations: 5022)
+Completed 200 OK in 13ms (Views: 11.5ms | ActiveRecord: 0.2ms | Allocations: 5411)
+
+
+Started GET "/blogs/1/edit" for ::1 at 2022-08-08 15:43:59 +0530
+Processing by BlogsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBlog Load (0.1ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/blogs_controller.rb:17:in `edit'
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/edit.html.erb within layouts/application
+  Rendered partials/_blog_form.erb (Duration: 2.3ms | Allocations: 939)
+  Rendered blogs/edit.html.erb within layouts/application (Duration: 2.7ms | Allocations: 1017)
+  Rendered layout layouts/application.html.erb (Duration: 8.4ms | Allocations: 3207)
+Completed 200 OK in 11ms (Views: 9.0ms | ActiveRecord: 0.1ms | Allocations: 3994)
+
+
+Started GET "/blogs/new" for ::1 at 2022-08-08 15:44:20 +0530
+Processing by BlogsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/new.html.erb within layouts/application
+  Rendered partials/_blog_form.erb (Duration: 1.8ms | Allocations: 903)
+  Rendered blogs/new.html.erb within layouts/application (Duration: 2.5ms | Allocations: 1104)
+  Rendered layout layouts/application.html.erb (Duration: 5.4ms | Allocations: 3301)
+Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 0.0ms | Allocations: 3711)
+
+
+Started GET "/blogs" for ::1 at 2022-08-08 15:45:14 +0530
+Processing by BlogsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/index.html.erb within layouts/application
+  [1m[36mBlog Load (0.1ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs"[0m
+  ↳ app/views/blogs/index.html.erb:8
+  Rendered blogs/index.html.erb within layouts/application (Duration: 12.0ms | Allocations: 4978)
+  Rendered layout layouts/application.html.erb (Duration: 12.4ms | Allocations: 5058)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.1ms | Allocations: 6065)
+
+
+  
+ActionView::Template::Error (undefined method `show_blog_path' for #<ActionView::Base:0x00000000010cc0>):
+    10:       <td><%= blog.title %><input type="hidden" class="blog_id" name="blog_id" value=<%= blog.id %>/></td>
+    11:       <td><%= blog.body %></td>
+    12:       <td><%= select('blog', 'status', options_for_select([['Publish', 1], ['Unpublish', 0]], blog.status)) %></td>
+    13:       <td><%= link_to 'Edit', edit_blog_path(blog.id) %><%= link_to 'Show', show_blog_path(blog.id) %><%= button_to 'Delete', blog_path(blog.id), method: :delete %></td>
+    14:     </te>
+    15:   <% end %>
+    16: </table>
+  
+app/views/blogs/index.html.erb:13
+app/views/blogs/index.html.erb:8
+Started GET "/blogs" for ::1 at 2022-08-08 15:45:54 +0530
+Processing by BlogsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/index.html.erb within layouts/application
+  [1m[36mBlog Load (0.1ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs"[0m
+  ↳ app/views/blogs/index.html.erb:8
+  Rendered blogs/index.html.erb within layouts/application (Duration: 4.3ms | Allocations: 3099)
+  Rendered layout layouts/application.html.erb (Duration: 7.0ms | Allocations: 5412)
+Completed 200 OK in 10ms (Views: 8.5ms | ActiveRecord: 0.1ms | Allocations: 6445)
+
+
+Started GET "/blogs/1" for ::1 at 2022-08-08 15:45:56 +0530
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/show.html.erb within layouts/application
+  Rendered blogs/show.html.erb within layouts/application (Duration: 1.1ms | Allocations: 712)
+  Rendered layout layouts/application.html.erb (Duration: 3.6ms | Allocations: 3109)
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.0ms | Allocations: 3432)
+
+
+Started GET "/blogs/1" for ::1 at 2022-08-08 15:46:36 +0530
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/show.html.erb within layouts/application
+  Rendered blogs/show.html.erb within layouts/application (Duration: 1.6ms | Allocations: 1586)
+  Rendered layout layouts/application.html.erb (Duration: 1.8ms | Allocations: 1665)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 2535)
+
+
+  
+ActionView::Template::Error (undefined method `title' for nil:NilClass):
+    1: <h1><%= @article.title %></h1>
+    2: 
+    3: <p><%= @article.body %></p>
+    4: 
+  
+app/views/blogs/show.html.erb:1
+Started GET "/blogs/1" for ::1 at 2022-08-08 15:47:09 +0530
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/blogs_controller.rb:28:in `show'
+  [1m[36mBlog Load (0.2ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/blogs_controller.rb:28:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/show.html.erb within layouts/application
+  Rendered blogs/show.html.erb within layouts/application (Duration: 1.0ms | Allocations: 1316)
+  Rendered layout layouts/application.html.erb (Duration: 1.2ms | Allocations: 1395)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.8ms | Allocations: 6705)
+
+
+  
+ActionView::Template::Error (undefined method `title' for nil:NilClass):
+    1: <h1><%= @article.title %></h1>
+    2: 
+    3: <p><%= @article.body %></p>
+    4: 
+  
+app/views/blogs/show.html.erb:1
+Started GET "/blogs/1" for ::1 at 2022-08-08 15:48:24 +0530
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBlog Load (0.1ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/blogs_controller.rb:28:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/show.html.erb within layouts/application
+  Rendered blogs/show.html.erb within layouts/application (Duration: 0.8ms | Allocations: 337)
+  Rendered layout layouts/application.html.erb (Duration: 10.2ms | Allocations: 14479)
+Completed 200 OK in 13ms (Views: 11.8ms | ActiveRecord: 0.1ms | Allocations: 15948)
+
+
+Started GET "/blogs/1/edit" for ::1 at 2022-08-08 15:48:28 +0530
+Processing by BlogsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBlog Load (0.1ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/blogs_controller.rb:17:in `edit'
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/edit.html.erb within layouts/application
+  Rendered partials/_blog_form.erb (Duration: 2.6ms | Allocations: 1221)
+  Rendered blogs/edit.html.erb within layouts/application (Duration: 3.4ms | Allocations: 1482)
+  Rendered layout layouts/application.html.erb (Duration: 6.9ms | Allocations: 3671)
+Completed 200 OK in 9ms (Views: 7.5ms | ActiveRecord: 0.1ms | Allocations: 4497)
+
+
+Started GET "/blogs/1" for ::1 at 2022-08-08 15:49:07 +0530
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBlog Load (0.2ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/blogs_controller.rb:28:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/show.html.erb within layouts/application
+  Rendered blogs/show.html.erb within layouts/application (Duration: 2.6ms | Allocations: 1828)
+  Rendered layout layouts/application.html.erb (Duration: 2.8ms | Allocations: 1907)
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.2ms | Allocations: 3342)
+
+
+  
+ActionView::Template::Error (undefined method `comments' for nil:NilClass):
+    11: </ul>
+    12: 
+    13: <h2>Add a comment:</h2>
+    14: <%= form_with model: [ @blod, @blod.comments.build ] do |form| %>
+    15:   <p>
+    16:     <%= form.label :commenter %><br>
+    17:     <%= form.text_field :commenter %>
+  
+app/views/blogs/show.html.erb:14
+Started GET "/blogs/1" for ::1 at 2022-08-08 15:49:24 +0530
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/blogs_controller.rb:28:in `show'
+  [1m[36mBlog Load (0.2ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/blogs_controller.rb:28:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/show.html.erb within layouts/application
+  Rendered blogs/show.html.erb within layouts/application (Duration: 34.3ms | Allocations: 15945)
+  Rendered layout layouts/application.html.erb (Duration: 47.5ms | Allocations: 29873)
+Completed 200 OK in 58ms (Views: 48.8ms | ActiveRecord: 1.3ms | Allocations: 35493)
+
+
+Started POST "/blogs/1/comments" for ::1 at 2022-08-08 15:49:35 +0530
+  
+AbstractController::ActionNotFound (The action 'create' could not be found for CommentsController):
+  
+actionpack (7.0.3.1) lib/abstract_controller/base.rb:146:in `process'
+actionview (7.0.3.1) lib/action_view/rendering.rb:39:in `process'
+actionpack (7.0.3.1) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.3.1) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.3.1) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.3.1) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.3.1) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.3.1) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.3.1) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.3.1) lib/action_dispatch/routing/route_set.rb:852:in `call'
+rack (2.2.4) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.4) lib/rack/etag.rb:27:in `call'
+rack (2.2.4) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.4) lib/rack/head.rb:12:in `call'
+actionpack (7.0.3.1) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.0.3.1) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack (2.2.4) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.4) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (7.0.3.1) lib/action_dispatch/middleware/cookies.rb:697:in `call'
+activerecord (7.0.3.1) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.3.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.3.1) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.3.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.3.1) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.3.1) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.3.1) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.3.1) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.3.1) lib/active_support/tagged_logging.rb:114:in `block in tagged'
+activesupport (7.0.3.1) lib/active_support/tagged_logging.rb:38:in `tagged'
+activesupport (7.0.3.1) lib/active_support/tagged_logging.rb:114:in `tagged'
+railties (7.0.3.1) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.3.1) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.3.1) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.3.1) lib/action_dispatch/middleware/server_timing.rb:20:in `call'
+actionpack (7.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.3.1) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.3.1) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.3.1) lib/rails/engine.rb:530:in `call'
+puma (5.6.4) lib/puma/configuration.rb:252:in `call'
+puma (5.6.4) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.4) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.4) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.4) lib/puma/server.rb:441:in `process_client'
+puma (5.6.4) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/blogs/1" for ::1 at 2022-08-08 15:49:35 +0530
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBlog Load (0.1ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/blogs_controller.rb:28:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/show.html.erb within layouts/application
+  Rendered blogs/show.html.erb within layouts/application (Duration: 2.9ms | Allocations: 1311)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | Allocations: 3500)
+Completed 200 OK in 9ms (Views: 7.7ms | ActiveRecord: 0.1ms | Allocations: 4270)
+
+
+Started GET "/blogs/1" for ::1 at 2022-08-08 15:49:37 +0530
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBlog Load (0.1ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/blogs_controller.rb:28:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/show.html.erb within layouts/application
+  Rendered blogs/show.html.erb within layouts/application (Duration: 15.1ms | Allocations: 1302)
+  Rendered layout layouts/application.html.erb (Duration: 34.6ms | Allocations: 3491)
+Completed 200 OK in 41ms (Views: 35.2ms | ActiveRecord: 0.1ms | Allocations: 4260)
+
+
+Started GET "/blogs/1" for ::1 at 2022-08-08 15:51:53 +0530
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/blogs_controller.rb:28:in `show'
+  [1m[36mBlog Load (0.2ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/blogs_controller.rb:28:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/show.html.erb within layouts/application
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?[0m  [["blog_id", 1]]
+  ↳ app/views/blogs/show.html.erb:14
+  Rendered blogs/show.html.erb within layouts/application (Duration: 11.0ms | Allocations: 6951)
+  Rendered layout layouts/application.html.erb (Duration: 23.0ms | Allocations: 20876)
+Completed 200 OK in 33ms (Views: 23.7ms | ActiveRecord: 2.0ms | Allocations: 26496)
+
+
+Started POST "/blogs/1/comments" for ::1 at 2022-08-08 15:52:05 +0530
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"Kiran", "body"=>"Nice wok"}, "commit"=>"Create Comment", "blog_id"=>"1"}
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms | Allocations: 3566)
+
+
+  
+NameError (undefined local variable or method `blog' for #<CommentsController:0x0000000001f978>):
+  
+app/controllers/comments_controller.rb:3:in `create'
+Started GET "/blogs/1" for ::1 at 2022-08-08 15:52:47 +0530
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/blogs_controller.rb:28:in `show'
+  [1m[36mBlog Load (0.3ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/blogs_controller.rb:28:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/show.html.erb within layouts/application
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?[0m  [["blog_id", 1]]
+  ↳ app/views/blogs/show.html.erb:14
+  Rendered blogs/show.html.erb within layouts/application (Duration: 9.7ms | Allocations: 6515)
+  Rendered layout layouts/application.html.erb (Duration: 20.1ms | Allocations: 20212)
+Completed 200 OK in 31ms (Views: 20.5ms | ActiveRecord: 2.0ms | Allocations: 25552)
+
+
+Started POST "/blogs/1/comments" for ::1 at 2022-08-08 15:52:54 +0530
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"kiran", "body"=>"test"}, "commit"=>"Create Comment", "blog_id"=>"1"}
+  [1m[36mBlog Load (0.1ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:3:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/comments_controller.rb:4:in `create'
+  [1m[36mComment Create (0.2ms)[0m  [1m[32mINSERT INTO "comments" ("commenter", "body", "blog_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["commenter", "kiran"], ["body", "test"], ["blog_id", 1], ["created_at", "2022-08-08 10:22:54.840961"], ["updated_at", "2022-08-08 10:22:54.840961"]]
+  ↳ app/controllers/comments_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/comments_controller.rb:4:in `create'
+Redirected to http://localhost:3000/blogs/1
+Completed 302 Found in 6ms (ActiveRecord: 1.6ms | Allocations: 4140)
+
+
+Started GET "/blogs/1" for ::1 at 2022-08-08 15:52:54 +0530
+Processing by BlogsController#show as TURBO_STREAM
+  Parameters: {"id"=>"1"}
+  [1m[36mBlog Load (0.2ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/blogs_controller.rb:28:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/show.html.erb within layouts/application
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?[0m  [["blog_id", 1]]
+  ↳ app/views/blogs/show.html.erb:14
+  Rendered blogs/show.html.erb within layouts/application (Duration: 6.2ms | Allocations: 1872)
+  Rendered layout layouts/application.html.erb (Duration: 10.9ms | Allocations: 4061)
+Completed 200 OK in 14ms (Views: 11.4ms | ActiveRecord: 0.3ms | Allocations: 4883)
+
+
+Started GET "/blogs/1" for ::1 at 2022-08-08 15:56:46 +0530
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBlog Load (0.1ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/blogs_controller.rb:28:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/show.html.erb within layouts/application
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?[0m  [["blog_id", 1]]
+  ↳ app/views/partials/_comment_view.erb:1
+  Rendered partials/_comment_view.erb (Duration: 5.8ms | Allocations: 839)
+  Rendered partials/_comments_form.erb (Duration: 2.6ms | Allocations: 1374)
+  Rendered blogs/show.html.erb within layouts/application (Duration: 9.8ms | Allocations: 2831)
+  Rendered layout layouts/application.html.erb (Duration: 13.3ms | Allocations: 5333)
+Completed 200 OK in 17ms (Views: 14.5ms | ActiveRecord: 0.2ms | Allocations: 6804)
+
+
+Started POST "/blogs/1/comments" for ::1 at 2022-08-08 15:56:55 +0530
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"Itachi", "body"=>"Nice work"}, "commit"=>"Create Comment", "blog_id"=>"1"}
+  [1m[36mBlog Load (0.1ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:3:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/comments_controller.rb:4:in `create'
+  [1m[36mComment Create (0.2ms)[0m  [1m[32mINSERT INTO "comments" ("commenter", "body", "blog_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["commenter", "Itachi"], ["body", "Nice work"], ["blog_id", 1], ["created_at", "2022-08-08 10:26:55.176313"], ["updated_at", "2022-08-08 10:26:55.176313"]]
+  ↳ app/controllers/comments_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/comments_controller.rb:4:in `create'
+Redirected to http://localhost:3000/blogs/1
+Completed 302 Found in 7ms (ActiveRecord: 2.2ms | Allocations: 2919)
+
+
+Started GET "/blogs/1" for ::1 at 2022-08-08 15:56:55 +0530
+Processing by BlogsController#show as TURBO_STREAM
+  Parameters: {"id"=>"1"}
+  [1m[36mBlog Load (0.1ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/blogs_controller.rb:28:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/show.html.erb within layouts/application
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?[0m  [["blog_id", 1]]
+  ↳ app/views/partials/_comment_view.erb:1
+  Rendered partials/_comment_view.erb (Duration: 1.4ms | Allocations: 686)
+  Rendered partials/_comments_form.erb (Duration: 1.9ms | Allocations: 1117)
+  Rendered blogs/show.html.erb within layouts/application (Duration: 3.8ms | Allocations: 2096)
+  Rendered layout layouts/application.html.erb (Duration: 7.3ms | Allocations: 4285)
+Completed 200 OK in 9ms (Views: 7.8ms | ActiveRecord: 0.2ms | Allocations: 5109)
+
+
+Started GET "/blogs/1" for ::1 at 2022-08-08 16:02:43 +0530
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/blogs_controller.rb:28:in `show'
+  [1m[36mBlog Load (0.2ms)[0m  [1m[34mSELECT "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/blogs_controller.rb:28:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering blogs/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?[0m  [["blog_id", 1]]
+  ↳ app/views/partials/_comment_view.erb:1
+  Rendered partials/_comment_view.erb (Duration: 1.3ms | Allocations: 716)
+  Rendered partials/_comments_form.erb (Duration: 1.7ms | Allocations: 1112)
+  Rendered blogs/show.html.erb within layouts/application (Duration: 3.5ms | Allocations: 2071)
+  Rendered layout layouts/application.html.erb (Duration: 37.3ms | Allocations: 9879)
+Completed 200 OK in 40ms (Views: 37.8ms | ActiveRecord: 0.6ms | Allocations: 11159)
+
+
