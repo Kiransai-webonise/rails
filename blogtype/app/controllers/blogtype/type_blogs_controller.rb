@@ -6,9 +6,6 @@ module Blogtype
       @type_blogs = TypeBlog.all
     end
 
-    def show
-    end
-
     def new
       @type_blog = TypeBlog.new
     end
