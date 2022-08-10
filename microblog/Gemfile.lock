@@ -1,7 +1,5 @@
-GIT
-  remote: git@github.com:Kiransai-webonise/engine-rails.git
-  revision: 8a4838628726f0c1164519f80d04bf9b0c979bfb
-  branch: assignment3
+PATH
+  remote: ../../blogtype
   specs:
     blogtype (0.1.0)
       rails (>= 7.0.3.1)

@@ -8,10 +8,10 @@ gem "rails", "~> 7.0.3", ">= 7.0.3.1"
 
 gem 'devise'
 
-gem "blogtype", git: 'git@github.com:Kiransai-webonise/engine-rails.git',
-                branch: 'assignment3'
+# gem "blogtype", git: 'git@github.com:Kiransai-webonise/engine-rails.git',
+#                 branch: 'assignment3'
 
-# gem "blogtype", path: '../../engine'
+gem "blogtype", path: '../../blogtype'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
