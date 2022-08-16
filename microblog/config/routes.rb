@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :blogs
+  resources :blogs do
+    resources :comments
+  end
   put 'blogs/change_status/:id', to: 'blogs#change_status', as: 'change_status'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
