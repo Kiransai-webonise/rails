@@ -3,4 +3,4 @@
 //= link_tree ../../javascript .js
 //= link_tree ../../../vendor/javascript .js
 //= link common.js
-//= link blogtype/application.css
+//= link articles/application.css
