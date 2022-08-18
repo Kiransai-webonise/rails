@@ -13,6 +13,16 @@ module Micreblog
 
     # Configuration for the application, engines, and railties goes here.
     #
+    overrides = "#{Rails.root}/app/overrides"
+    Rails.autoloaders.main.ignore(overrides)
+
+    config.to_prepare do
+      Dir.glob("#{overrides}/**/*_override.rb").each do |override|
+        load override
+      end
+    end
+
+    
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
