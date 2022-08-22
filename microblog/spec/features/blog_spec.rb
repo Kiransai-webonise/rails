@@ -6,7 +6,7 @@ RSpec.describe 'Blogs features' do
     end
 
     let(:create_blog) do
-        Blog.create!(title: 'kiran', body: 'good', status: 1)
+        Blog.create!(title: 'kiran', body: 'good', publish: 1)
         view_blogs
     end
 
@@ -22,13 +22,13 @@ RSpec.describe 'Blogs features' do
     describe 'adding a new blog' do
         it 'adds the blog to the list of blogs' do
             view_blogs
-            click_link('Add New Blog')
+            click_link('Ad New Blog')
 
             expect(current_path).to have_content('/blogs/new')
 
             fill_in(placeholder: "Title", with: 'kiran')
             fill_in(placeholder: "Body", with: 'good')
-            select "Unpublish", from: "blog[status]"
+            select "No", from: "blog[publish]"
 
             click_button('Create Blog')
 
@@ -69,10 +69,10 @@ RSpec.describe 'Blogs features' do
         it 'Change the status the blog in the list of blogs' do
             create_blog
 
-            expect(find_field('blog[status]').find('option[selected]').text).to eq('Publish')
-            select "Unpublish", from: "blog[status]"
+            expect(find_field('blog[publish]').find('option[selected]').text).to eq('Yes')
+            select "No", from: "blog[publish]"
 
-            expect(find_field('blog[status]').find('option[selected]').text).to eq('Unpublish')
+            expect(find_field('blog[publish]').find('option[selected]').text).to eq('No')
         end
     end
 end

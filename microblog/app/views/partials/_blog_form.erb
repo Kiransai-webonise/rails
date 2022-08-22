@@ -1,6 +1,6 @@
 <%= form_with model: @blog do |form| %>
     <%= form.text_field :title, placeholder: "Title" %>
     <%= form.text_area :body, placeholder: "Body" %>
-    <%= select('blog', 'status', options_for_select([['Publish', 1], ['Unpublish', 0]], @blog.status)) %>
+    <%= select('blog', 'publish', options_for_select([['Yes', true], ['No', false]], @blog.publish)) %>
     <%= form.submit %>
 <% end %>

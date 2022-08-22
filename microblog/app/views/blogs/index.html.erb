@@ -4,14 +4,15 @@
   <tr>
     <th>Ttile</th>
     <th>Body</th>
-    <th>Status</th>
+    <th>Publish</th>
     <th></th>
   </tr>
   <% @blogs.each do |blog| %>
+    <%= blog.publish %>
     <tr>
       <td><%= blog.title %><input type="hidden" class="blog_id" name="blog_id" value=<%= blog.id %>/></td>
       <td><%= blog.body %></td>
-      <td><%= select('blog', 'status', options_for_select([['Publish', 1], ['Unpublish', 0]], blog.status)) %></td>
+      <td><%= select('blog', 'publish', options_for_select([['Yes', true], ['No', false]], blog.publish), {}, { :class => 'blog_publish' }) %></td>
       <td><%= link_to 'Edit', edit_blog_path(blog.id) %><%= button_to 'Delete', blog_path(blog.id), method: :delete %></td>
     </te>
   <% end %>

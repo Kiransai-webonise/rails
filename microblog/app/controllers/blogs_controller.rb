@@ -33,12 +33,13 @@ class BlogsController < ApplicationController
 
   def change_status
     @blog = Blog.find(params[:id])
+
     @blog.update(blog_params)
   end
 
   private
 
   def blog_params
-    params.require(:blog).permit(:title, :body, :status)
+    params.require(:blog).permit(:title, :body, :publish)
   end
 end
