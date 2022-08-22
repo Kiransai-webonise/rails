@@ -255,14 +255,14 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
-  devise
-  factory_bot_rails
-  faker
+  devise (~> 4.8.1)
+  factory_bot_rails (~> 6.2.0)
+  faker (~> 2.22.0)
   importmap-rails
   jbuilder
   puma (~> 5.0)
   rails (~> 7.0.3, >= 7.0.3.1)
-  rspec-rails
+  rspec-rails (~> 5.1.2)
   selenium-webdriver
   sprockets-rails
   sqlite3 (~> 1.4)

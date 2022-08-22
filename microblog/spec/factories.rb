@@ -10,4 +10,4 @@ FactoryBot.define do
         email { "jane.doe@hey.com" }
         password { "SecretPassword" }
     end
-  end
+end
