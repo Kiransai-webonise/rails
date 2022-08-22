@@ -5,11 +5,14 @@ RSpec.describe 'Blogs features' do
         visit('/blogs')
     end
 
+    let(:create_blog) do
+        Blog.create!(title: 'kiran', body: 'good', status: 1)
+        view_blogs
+    end
+
     describe 'viewing the index' do
         it 'lists all of the blogs' do
-            Blog.create!(title: 'kiran', body: 'good', status: 1)
-
-            view_blogs
+            create_blog
 
             expect(page).to have_content('kiran')
             expect(page).to have_content('good')
@@ -36,9 +39,7 @@ RSpec.describe 'Blogs features' do
 
     describe 'editing a blog' do
         it 'edit the blog in the list of blogs' do
-            Blog.create!(title: 'kiran', body: 'good', status: 1)
-
-            view_blogs
+            create_blog
 
             click_link('Edit')
             expect(page).to have_content('good')
@@ -54,15 +55,24 @@ RSpec.describe 'Blogs features' do
     end
 
     describe 'Deleting a blog' do
-        it 'edit the blog in the list of blogs' do
-            Blog.create!(title: 'kiran', body: 'good', status: 1)
-
-            view_blogs
+        it 'delete the blog in the list of blogs' do
+            create_blog
 
             expect(page).to have_content('good')
             click_button('Delete')
             expect(current_path).to have_content('/blogs')
             expect(page).to have_no_content('good')
+        end
+    end
+
+    describe 'Change Status' do
+        it 'Change the status the blog in the list of blogs' do
+            create_blog
+
+            expect(find_field('blog[status]').find('option[selected]').text).to eq('Publish')
+            select "Unpublish", from: "blog[status]"
+
+            expect(find_field('blog[status]').find('option[selected]').text).to eq('Unpublish')
         end
     end
 end

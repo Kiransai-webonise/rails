@@ -8,25 +8,41 @@ RSpec.describe Blog, :type => :model do
     before(:all) do
         @blog = build(:blog)
     end 
+
+    it "has title" do
+        blog = Blog.new(title: "").save
+        expect(blog).to eq(false)
+    end
     
-    it "has valid title" do
+    it "has title with more than 2 characters" do
+        blog = Blog.new(title: "as").save
+        expect(blog).to eq(false)
+    end
+
+    it "has title with max of 10 characters" do
+        blog = Blog.new(title: "kirzn sai b title").save
+        expect(blog).to eq(false)
+    end
+
+    it "has valid title in factory" do
         expect(@blog).to be_valid
+    end
+
+    it "has status" do
+        blog = Blog.new(status: "").save
+        expect(blog).to eq(false)
     end
 
     it "has valid status" do
         expect(@blog).to be_valid
     end
 
+    it "has body" do
+        blog = Blog.new(body: "").save
+        expect(blog).to eq(false)
+    end
+
     it "has valid body" do
         expect(@blog).to be_valid
     end
-
-    # it "updates status" do
-    #     blog_status = Blog.new(status: 0)
-  
-    #     expect do 
-    #         blog_status.toggle_property(:completed)
-    #     end.to change {blog_status.completed}.from(true).to(false)
-    #   end
-    # end
 end
